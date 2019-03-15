@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register Template</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+    <link rel="stylesheet" href="../../node_modules/cropperjs/dist/cropper.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- Image and text -->
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">
+            Register Template
+        </a>
+    </nav>
+
+    <div class="row">
+        <div class="col-4">
+            <div class="container mt-5 ">
+                <div class="jumbotron bg-dark">
+                    <div>
+                        <h3 class="lead text-light">Please select a form that you want to register as a template</h3>
+                        <br>
+                        <input class="btn" type="file" onchange="readURL(this);"> 
+                         <br><br>
+                         <div class="row">
+                             <div class="col-6">
+                                <button class="btn btn-block btn-sm btn-warning" type="submit" id="crop-fields"><i class="fas fa-crop-alt"></i> Crop Fields</button>
+
+                             </div>
+                             <div class="col-6">
+                                <button class="btn btn-block btn-sm btn-danger" type="submit" id="stop-crop"><i class="fas fa-times-circle"></i> Stop Cropping</button>
+
+                             </div>
+                         </div>
+                    </div>
+                    <div class="input-group mt-3">
+                            <input class="form-control" required type="text" placeholder="Field Name" id="field-name">
+                            <div class="input-group-append">
+                                    <button class="btn btn-info" type="submit" id="add-field"><i class="fas fa-plus"></i></button>
+                            </div>
+                            
+                        
+                    </div>
+
+                    <div class="mt-5">
+                        <button class="btn btn-block btn-success" type="submit" id="register-template" value="Register Template">
+                            Register Template to Database
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-8 mt-5">
+            <div class="container">
+                <img id="image" src="." alt="">
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="../../node_modules/cropperjs/dist/cropper.js"></script>
+    <script src="./register-template.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Process Forms</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+    <link rel="stylesheet" href="../../node_modules/cropperjs/dist/cropper.css">
+<style>
+#form{
+        width: 50%;
+        margin: auto;
+}
+#form #loader{
+        display: none;
+        width: 200px;
+        height: 200px;
+        margin-left: 30%;
+
+}
+</style>
+</head>
+<body>
+        <nav class="navbar navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">
+                  Process Forms
+                </a>
+        </nav>
+
+
+        <div class="container mt-5">
+                <div class="jumbotron">
+                        <h3 class="lead">Please select a form that you want to register as a template</h3><br>
+                        <form id="uploadImage" method="POST" enctype="multipart/form-data">
+                                <input class="btn btn-warning btn-block" type="file" name="file" id="file" /><br>
+                                <input type="submit" class="btn btn-success btn-block" value="Upload Image" />
+                        </form>                
+                        
+                        
+                </div>
+        </div>
+        
+       
+        <div id="form" class="container">
+                <button id="getdata" class="btn btn-primary btn-block">Get Data</button><br>
+                <img id="loader" src="./loader2.gif" alt="">
+        </div>
+        
+       
+
+      
+        
+    
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>        
+<script src="../../node_modules//cropperjs/dist/cropper.js"></script>
+<script src="./process-forms.js"></script>
+</body>
+</html>
