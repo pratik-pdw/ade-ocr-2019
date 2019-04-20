@@ -13,12 +13,13 @@ import pymongo
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017")
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:\\Users\\USER\\Downloads\\gcloudstuff\\apikey.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="apikey.json"
 
 mydb = myclient["mydatabase"]
-mycol = mydb["customers"]
+mycol = mydb["coordinates"]
+saveCol = mydb["finalData"]
 
-UPLOAD_FOLDER = "C:\\Users\\USER\\Desktop\\BE-Project\\flask-api\\uploads" 
+UPLOAD_FOLDER = "E:\\ade-ocr-2019\\flask-api\\uploads" 
 #Set this to your preferred directory
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
@@ -98,6 +99,18 @@ def upload():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         return "Saved to file"
        
+@app.route('/save', methods=['POST'])
+def save():
+    some_json = request.get_json() #get the data
+    print(type(some_json[0]))
+    res = []
+    for i in range(len(some_json)):
+        temp = json.dumps(some_json[i])
+        loaded_temp = json.loads(temp)
+        res.append(loaded_temp)
+    print(res)
+    saveCol.insert_many(res)
+    return jsonify(some_json)
 
 
 def add_coordinates(data):
