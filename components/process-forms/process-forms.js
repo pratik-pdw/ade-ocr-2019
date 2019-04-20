@@ -4,6 +4,7 @@ var loader = document.getElementById('loader');
 // var form = document.getElementById('form');
 var formData = "";
 let finalData = undefined;
+let finalDataStore = [];
 
 
 uploadImage.addEventListener('submit', (e)=>{
@@ -54,6 +55,13 @@ getdata.addEventListener('click',(e)=>{
 
 document.getElementById("storeData").addEventListener('click', (e)=>{
     e.preventDefault();
+    let fields = Object.keys(finalData);
+    for(let i=0; i<fields.length; i++){
+        var data = {
+            fields[i] : document.getElementById(fields[i]).value
+        }
+        finalDataStore.unshift(data);
+    }
     fetch('http://127.0.0.1:5000/save',{
         method:"POST",
         mode: "cors", // no-cors, cors, *same-origin
@@ -62,7 +70,7 @@ document.getElementById("storeData").addEventListener('click', (e)=>{
             "Content-Type": "application/json; charset=utf-8",
             // "Content-Type": "application/x-www-form-urlencoded",
         },
-        body:JSON.stringify(finalData)
+        body:JSON.stringify(finalDataStore)
     }).then((res)=>{return res.json()})
     .then((data)=>console.log(data));
 })
@@ -86,7 +94,7 @@ function showForm(data){
                 <div class="form-group">
                     <label for="${keys[i]}">${keys[i]}</label>
                     <img style="width: 500px;height: 35px;" src="${imgSrc+keys[i]+".jpg"}"><br><br>
-                    <input type="text" name="${keys[i]}" value="${data[keys[i]]}" class="form-control" />
+                    <input type="text" id="${keys[i]}" name="${keys[i]}" value="${data[keys[i]]}" class="form-control" />
                    
                 </div>
             `
