@@ -3,6 +3,7 @@ var getdata = document.getElementById('getdata');
 var loader = document.getElementById('loader');
 // var form = document.getElementById('form');
 var formData = "";
+let finalData = undefined;
 
 
 uploadImage.addEventListener('submit', (e)=>{
@@ -51,11 +52,30 @@ getdata.addEventListener('click',(e)=>{
     });
 });
 
+document.getElementById("storeData").addEventListener('click', (e)=>{
+    e.preventDefault();
+    fetch('http://127.0.0.1:5000/save',{
+        method:"POST",
+        mode: "cors", // no-cors, cors, *same-origin
+        cache: "no-cache", // *def // include, same-origin, *omit
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body:JSON.stringify(finalData)
+    }).then((res)=>{return res.json()})
+    .then((data)=>console.log(data));
+})
+
+
+
+
+
 function showForm(data){
     console.log("called");
     getdata.style.display = "none";
     let keys = Object.keys(data);
-    
+    finalData = data;
     let imgSrc = "../../flask-api/";
     
     let form = document.getElementById("form");
@@ -75,6 +95,8 @@ function showForm(data){
         <button id="storeData" class="btn btn-success">Store Data</button>
     `    
 }
+
+
 
 
 
